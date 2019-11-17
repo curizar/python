@@ -54,10 +54,3 @@ Valor_dolar = pd.DataFrame.from_dict(json_dolar["serie"])
 print(Valor_dolar.head(10))
 
 # formato a columna fecha para que concida con el data frame de Bolsa_Valores
-.
-.
-.
-.
-.
-.
-.
