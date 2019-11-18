@@ -53,4 +53,28 @@ Valor_dolar = pd.DataFrame.from_dict(json_dolar["serie"])
 # visualizamos el data frame
 print(Valor_dolar.head(10))
 
-# formato a columna fecha para que concida con el data frame de Bolsa_Valores
+# formato a columna fecha para que concida con el data frame de Bolsa_Valores dd/mm/yyyy
+
+# importamos libreria para manejo de fechas
+import datatime
+
+# creamos una copia de la columna Valor_dolar.fecha
+fecha2 = Valor_dolar.fecha
+
+# cambiamos el formato de fecha de cada registro a dd/mm/yyyy  (paso A)
+for i in range(0,Valor_dolar.shape[0]+1):
+  fecha2[i] = datetime.datetime.strptime(fecha2[i],"%Y-%m-%dT%H:%M:%S.%fZ").strftime("%m/%d/%Y")
+
+# visualizamos la fecha2 que queda en formato dd/mm/yyyy
+print(fecha2.head(10))
+
+# con el paso A cambia el formato de la columna original de fecha (?) aunque la intencion era agregar la fecha corta como 3ra columna
+print(Valor_dolar.head(10))
+
+# agregamos la fecha2 como columna en Valor_dolar
+Valor_dolar['fecha2'] = fecha2
+
+# visualizamos Valor_dolar con fecha original y corta (en este caso son iguales porque cambió en el paso A)
+print(Valor_dolar.head(10))
+
+
