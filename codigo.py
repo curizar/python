@@ -54,3 +54,23 @@ Valor_dolar = pd.DataFrame.from_dict(json_dolar["serie"])
 print(Valor_dolar.head(10))
 
 # formato a columna fecha para que concida con el data frame de Bolsa_Valores
+
+# para manejar las fechas y formatos
+import datetime
+
+# una lista copia de la columna fecha de Valor_dolar
+fecha2 = Valor_dolar.fecha
+
+# se recorre la lista de fecha2 cambiando el formato a dd/mm/yyyy
+for i in range(0,Valor_dolar.shape[0]+1):
+ fecha2[i] = datetime.datetime.strptime(fecha2[i],"%Y-%m-%dT%H:%M:%S.%fZ").strftime("%m/%d/%Y")
+# este paso cambia la fecha2 y la fecha original (?)
+  
+# visualizamos el nuevo formato de fecha 
+print(fecha2.head(10))
+
+# (opcional) se agrega la nueva columna de fecha en formato dd/mm/yyyy
+Valor_dolar['fecha2'] = fecha2
+
+# visualizamos el resultado con nuevo formato
+print(Valor_dolar.head(10))
